@@ -1,8 +1,8 @@
 <header>
 <nav>
 <ul>
-<li>1</li>
-<li>2</li>
+<li><a href="index.php?q=users">Users</a></li>
+<li>Articles</li>
 <li>3</li>
 </ul>
 </nav>

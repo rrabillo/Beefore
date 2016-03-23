@@ -5,6 +5,9 @@ if(isset($_POST['username'])){
 if(isset($_POST['logout'])){
 	$_SESSION['user']->logout();
 }
+if(isset($_POST['register'])){
+	$_SESSION['user']->register();
+}
 ?>
 <?php if($_SESSION['user']->isLogged()):?>
 	<?php if($_SESSION['user']->isAdmin()) :?>
@@ -31,3 +34,20 @@ if(isset($_POST['logout'])){
 		<input type="submit" value="Deconnexion" name="logout"/>
 	</form>
 <?php endif;?>
+
+<h2>Ou inscrivez vous</h2>
+<form action="index.php" method="post">
+	<p>
+		<label for="username-register">Username</label>
+		<input type="text" name="username-register" id="username-register">
+	</p>
+	<p>
+		<label for="password-register">Password</label>
+		<input type="password" name="password-register" id="password-register">
+	</p>
+	<p>
+		<label for="email-register">Email</label>
+		<input type="text" name="email-register" id="email-register">
+	</p>
+	<input type="submit" value="Register" name="register"/>
+</form>

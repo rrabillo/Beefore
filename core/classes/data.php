@@ -11,10 +11,10 @@ class data{
 				$req->bindParam(':password', $password);
 				$req->bindParam(':email', $email);
 				$req->bindParam(':rank', $rank);
-				$nickname = $data->nickname;
-				$password = $data->password;
-				$email = $data->email;
-				$rank = $data->rank;
+				$nickname = $data['nickname'];
+				$password = $data['password'];
+				$email = $data['email'];
+				$rank = $data['rank'];
 				$req->execute();
 			break;
 		}
@@ -23,4 +23,4 @@ class data{
 
 $db = new data();
 $db->db = $dbh;
-$GLOBALS['db'] = $db->db;
+$GLOBALS['db'] = $db;

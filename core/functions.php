@@ -19,6 +19,9 @@ function bf_loginForm(){
 function bf_footer(){
 	require(THEME_PATH. 'footer.php');
 }
+function bf_usersAdmin(){
+	require(THEME_PATH. 'users.php');
+}
 // /* Display Articles */
 // function bee_displayArticles(){
 // 	global $mysql;
