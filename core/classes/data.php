@@ -19,6 +19,16 @@ class data{
 			break;
 		}
 	}
+	function getData($type){
+		switch ($type) {
+			case 'users':
+				$req = $this->db->prepare("SELECT * FROM users");
+				$req->execute();
+				$result = $req->fetchAll();
+				return $result;
+				break;
+		}
+	}
 }
 
 $db = new data();

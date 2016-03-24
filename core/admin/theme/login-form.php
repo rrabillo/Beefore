@@ -2,9 +2,6 @@
 if(isset($_POST['username'])){
 	$_SESSION['user']->login();
 }
-if(isset($_POST['logout'])){
-	$_SESSION['user']->logout();
-}
 ?>
 <?php if($_SESSION['user']->isLogged()):?>
 	<?php if($_SESSION['user']->isAdmin()) :?>
@@ -24,10 +21,5 @@ if(isset($_POST['logout'])){
 		        <input type="password" name="password" id="password">
 		    </p>
 	    <input type="submit" value="Submit">
-	</form>
-<?php endif;?>
-<?php if($_SESSION['user']->isLogged()):?>
-	<form action="" method="post">
-		<input type="submit" value="Deconnexion" name="logout"/>
 	</form>
 <?php endif;?>

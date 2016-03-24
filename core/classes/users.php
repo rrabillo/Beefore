@@ -46,13 +46,33 @@ class user{
 		unset($_SESSION['user']->nickname);
 		unset($_SESSION['user']->rank);
 	}
-	public function register(){
+	public function listUsers(){
 		$db = $GLOBALS['db'];
+		print_r($db->getData('users'));
+	}
+	public function register(){
+		$db = $GLOBALS['db'];	
 		$data = array();
-		$data['nickname'] = $_POST['username-register'];
-		$data['password'] = $_POST['password-register'];
-		$data['email'] = $_POST['email-register'];
-		$data['rank'] = 1;
-		$db->insertData('users', $data);
+		try {
+			$this->validate($_POST['username-register']);
+			$data['nickname'] = $_POST['username-register'];
+			$this->validate($_POST['password-register']);
+			$data['password'] = $_POST['password-register'];
+			$this->validate($_POST['email-register']);
+			$data['email'] = $_POST['email-register'];
+			$this->validate($_POST['rank-register']);
+			$data['rank'] = $_POST['rank-register'];
+			$db->insertData('users', $data);
+			bf_setMessage('success', "L'utilisateur ".$data['nickname']." a bien été ajouté");
+		} catch (Exception $e) {
+			 $e->getMessage();
+		}
+	}
+	public function validate($field){
+		if(!isset($field) || $field === ""){
+			throw new Exception(bf_setMessage('error', 'Tous les champs sont requis'));
+			
+		}
+		return true;
 	}
 }

@@ -22,6 +22,19 @@ function bf_footer(){
 function bf_usersAdmin(){
 	require(THEME_PATH. 'users.php');
 }
+function bf_setMessage($type, $msg){
+	switch ($type) {
+		case 'error':
+			echo "<div class='error'>$msg</div>";
+			break;
+		case 'success':
+			echo "<div class='success'>$msg</div>";
+			break;
+		default:
+			# code...
+			break;
+	}
+}
 // /* Display Articles */
 // function bee_displayArticles(){
 // 	global $mysql;
