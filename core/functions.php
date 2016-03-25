@@ -20,7 +20,14 @@ function bf_footer(){
 	require(THEME_PATH. 'footer.php');
 }
 function bf_usersAdmin(){
-	require(THEME_PATH. 'users.php');
+	switch ($GLOBALS['current_url']) {
+		case 'users':
+			require(THEME_PATH. 'users.php');
+			break;
+		case 'edit':
+			require(THEME_PATH. 'edit.php');
+			break;
+	}
 }
 function bf_setMessage($type, $msg){
 	switch ($type) {

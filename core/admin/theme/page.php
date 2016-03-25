@@ -11,6 +11,9 @@ if(isset($_POST['logout'])){
 		<?php if($GLOBALS['current_url'] == "users"):?>
 			<?php bf_usersAdmin(); ?>
 		<?php endif;?>
+		<?php if($GLOBALS['current_url'] == "edit"):?>
+			<?php bf_usersAdmin(); ?>
+		<?php endif;?>
 	<?php else:?>
 		<?php bf_loginform();?>
 	<?php endif;?>

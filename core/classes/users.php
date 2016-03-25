@@ -47,8 +47,22 @@ class user{
 		unset($_SESSION['user']->rank);
 	}
 	public function listUsers(){
+		$db = $GLOBALS['db'];	
+		$results = $db->getData('users');
+		foreach ($results as $key => $value) {
+			echo "<div class='userlist'>
+					<span>Name: ".$value['nickname']."</span>
+					<span>email: ".$value['email']."</span>
+					<span>rank: ".$value['rank']."</span>
+					<span><a href='?remove=".$value['id']."'>Remove</a></span>
+					<span><a href='edit?user=".$value['id']."'>Edit</a></span>
+				</div>";
+		}
+	}
+	public function getUser(){
 		$db = $GLOBALS['db'];
-		print_r($db->getData('users'));
+		$results = $db->getData('users', $_GET['user']);
+		return $results;
 	}
 	public function register(){
 		$db = $GLOBALS['db'];	
@@ -74,5 +88,13 @@ class user{
 			
 		}
 		return true;
+	}
+	public function remove($id){
+		$db = $GLOBALS['db'];
+		$db->removeData('users', $id);
+		header('Location: ./users');
+	}
+	public function edit($id){
+
 	}
 }

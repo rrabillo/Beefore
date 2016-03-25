@@ -2,6 +2,9 @@
 if(isset($_POST['register'])){
 	$_SESSION['user']->register();
 }
+if(isset($_GET['remove'])){
+	$_SESSION['user']->remove($_GET['remove']);
+}
 ?>
 <h1>Ajouter un utilisateur</h1>
 <form action="./users" method="post" id="add-user">

@@ -19,14 +19,31 @@ class data{
 			break;
 		}
 	}
-	function getData($type){
+	function getData($type, $id = false){
 		switch ($type) {
 			case 'users':
-				$req = $this->db->prepare("SELECT * FROM users");
-				$req->execute();
-				$result = $req->fetchAll();
-				return $result;
+				if(!$id){
+					$req = $this->db->prepare("SELECT * FROM users");
+					$req->execute();
+					$result = $req->fetchAll();
+					return $result;
+				}
+				else{
+					$req = $this->db->prepare("SELECT * FROM users WHERE id = $id LIMIT 1");
+					$req->execute();
+					$result = $req->fetch();
+					return $result;
+				}
 				break;
+		}
+	}
+	function removeData($type, $id){
+		switch ($type) {
+			case 'users':
+				$req = $this->db->prepare("DELETE FROM users WHERE id = $id");
+				$req->execute();
+				break;
+
 		}
 	}
 }
