@@ -27,6 +27,9 @@ function bf_usersAdmin(){
 		case 'edit':
 			require(THEME_PATH. 'edit.php');
 			break;
+		case 'poles':
+			require(THEME_PATH. 'poles.php');
+			break;
 	}
 }
 function bf_setMessage($type, $msg){
