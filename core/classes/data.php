@@ -55,6 +55,20 @@ class data{
 					return $result;
 				}
 			break;
+			case 'articles':
+				if(!$id){
+					$req = $this->db->prepare("SELECT * FROM articles");
+					$req->execute();
+					$result = $req->fetchAll();
+					return $result;
+				}
+				else{
+					$req = $this->db->prepare("SELECT * FROM articles INNER JOIN poles ON articles.id_pole = poles.id WHERE poles.name = '$id' ORDER BY DATE DESC");
+					$req->execute();
+					$result = $req->fetchAll();
+					return $result;
+				}
+			break;
 		}
 	}
 	function removeData($type, $id){

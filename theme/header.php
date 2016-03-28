@@ -1,6 +1,5 @@
 <?php
    $poles =  $_SESSION['pole']->listBrut();
-   Kint::dump($poles);
 ?>
 <header role="banner">
     <div class="wrapper">

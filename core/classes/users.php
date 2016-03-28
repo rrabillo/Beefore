@@ -6,6 +6,7 @@ class user{
 	var $password;
 	var $email;
 	var $rank;
+	var $pole;
 
 	public function login(){
 		$db = $GLOBALS['db'];
@@ -18,6 +19,7 @@ class user{
 		if(password_verify($password, $results['password'])){
 			$_SESSION['user']->nickname = $nickname;
 			$_SESSION['user']->rank = $results['rank'];
+			$_SESSION['user']->pole = $results['id_pole'];
 		}
 		elseif(!$results){
 			echo "utilisateur non trouvé";

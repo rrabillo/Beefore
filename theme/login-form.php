@@ -5,16 +5,9 @@ if(isset($_POST['username'])){
 if(isset($_POST['logout'])){
 	$_SESSION['user']->logout();
 }
-if(isset($_POST['register'])){
-	$_SESSION['user']->register();
-}
 ?>
 <?php if($_SESSION['user']->isLogged()):?>
-	<?php if($_SESSION['user']->isAdmin()) :?>
-		<h2>Bonjour Admin</h2>
-	<?php else:?>
-		<h2>Vous n'êtes pas autorisé à accéder à cette page</h2>
-	<?php endif;?>
+	<h2>Bonjour <?php echo $_SESSION['user']->nickname ?></h2>
 	<?php else:?>
 	<h2>Veuillez vous connecter </h2>
 		<form action="index.php" method="post">
@@ -30,24 +23,11 @@ if(isset($_POST['register'])){
 	</form>
 <?php endif;?>
 <?php if($_SESSION['user']->isLogged()):?>
-	<form action="" method="post">
-		<input type="submit" value="Deconnexion" name="logout"/>
-	</form>
+                <div class="profil">
+                	<form action="" method="post" class="logout">
+						<input type="submit" value="Deconnexion" name="logout" class="btn btn-small btn-padding"/>
+					</form>
+                    <a href="add-article.php" class="btn btn-small btn-padding">Proposer un article</a>
+                </div>
+                <hr style="color: #fgfgfg; margin: 0 20px 0 20px;" />
 <?php endif;?>
-
-<h2>Ou inscrivez vous</h2>
-<form action="index.php" method="post">
-	<p>
-		<label for="username-register">Username</label>
-		<input type="text" name="username-register" id="username-register">
-	</p>
-	<p>
-		<label for="password-register">Password</label>
-		<input type="password" name="password-register" id="password-register">
-	</p>
-	<p>
-		<label for="email-register">Email</label>
-		<input type="text" name="email-register" id="email-register">
-	</p>
-	<input type="submit" value="Register" name="register"/>
-</form>

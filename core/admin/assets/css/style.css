@@ -327,6 +327,9 @@ embed {
 [role=middle]{
     display: block;
 }
+.logout{
+    display: inline-block;
+}
 #content-bo{
     padding-left: 25px;
     min-height: 85vh;

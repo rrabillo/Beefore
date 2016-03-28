@@ -327,6 +327,13 @@ embed {
 [role=middle]{
     display: block;
 }
+.logout{
+    display: inline-block;
+}
+.logout input{
+        padding: 0;
+    background: none;
+}
 #content-bo{
     padding-left: 25px;
     min-height: 85vh;

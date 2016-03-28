@@ -1,45 +1,26 @@
 <?php 
 ?>
+<?php $articles = $_SESSION['article']->listArticlebyPoleName($GLOBALS['current_url']);?>
 <section role="main">
 
     <div class="page-title">
         <div id="banner">
-            <h1>Toutes les directions</h1>
+            <h1><?php echo $GLOBALS['current_url'] ?></h1>
         </div>
     </div>
     <div role="left">
-        
-        <div class="disp-t">
-            <div class="disp-tr">
-                <div class="disp-tc dcm">
-                    <img src="assets/img/minion.jpg" alt="minions" class="img-actu">
-                    <h2>Confiance</h2>
-                    <p>Des freelances qui ne laisseront jamais leurs clients en difficultés</p>
-                    <a href="#" class="btn btn-small">Afficher la suite</a>
-                </div>
-            </div>
-        </div>
-        <div class="disp-t">
-            <div class="disp-tr">
-                <div class="disp-tc djur">
-                    <img src="assets/img/minion.jpg" alt="minions" class="img-actu">
-                    <h2>Confiance</h2>
-                    <p>Des freelances qui ne laisseront jamais leurs clients en difficultés</p>
-                    <a href="#" class="btn btn-small">Afficher la suite</a>
-                </div>
-            </div>
-        </div>
-        <div class="disp-t">
+        <?php foreach ($articles as $key => $value): ?>
             <div class="disp-tr dcom">
                 <div class="disp-tc">
                     <img src="assets/img/minion.jpg" alt="minions" class="img-actu">
-                    <h2>Confiance</h2>
-                    <p>Des freelances qui ne laisseront jamais leurs clients en difficultés</p>
+                    <h2><?php echo $value['title'] ?></h2>
+                    <p><?php echo $value['content'] ?></p>
                     <a href="#" class="btn btn-small">Afficher la suite</a>
                 </div>
             </div>
+        
+        <?php endforeach; ?>
         </div>
-
     </div>
 
     <div role="right">
@@ -48,14 +29,7 @@
                 <div class="profil">
                     <div class="profil-img"></div> 
                 </div>
-                <div class="profil">
-                    <h3>Prénom Nom</h3>
-                </div>
-                <div class="profil">
-                    <a href="#" class="btn btn-small btn-padding">Se déconnecter</a>
-                    <a href="#" class="btn btn-small btn-padding">Proposer un article</a>
-                </div>
-                <!-- <hr style="color: #fgfgfg; margin: 0 20px 0 20px;" /> -->
+                <?php bf_loginform();?>
             </div>
             <div class="disp-tv">
                 <div class="disp-event">
