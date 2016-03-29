@@ -8,6 +8,10 @@ $check = function($output) {
 		$results  = $_SESSION['pole']->getPole();
 		return $results[$output];
 	}
+	if(isset($_GET['article'])){
+		$results  = $_SESSION['article']->getArticle();
+		return $results[$output];
+	}
 };
 $getPoleList = function(){
 	$results  = $_SESSION['pole']->listBrut();
@@ -76,6 +80,36 @@ $getPoleList = function(){
 		<label for="name">Nom</label>
 		<input type="text" name="name" id="name" value="<?php echo $check('name');?>">
 	</p>
+	<input type="submit" value="Editer" name="edit"/>
+</form>	
+<?php endif;?>
+
+<?php if(isset($_GET['article'])): ?>
+<?php
+	if(isset($_POST['edit'])){
+		$values = array();
+		$values['id'] = $_GET['article'];
+		$values['title'] = $_POST['title'];
+		$values['content'] = $_POST['content'];
+		$values['published'] = $_POST['published'];
+		$_SESSION['article']->edit($values);
+	}
+?>
+<h1>Editer un article</h1>
+<form action="./edit?article=<?php echo $_GET['article']; ?>" method="post" id="edit-article">
+	<p>
+		<label for="title">Titre</label>
+		<input type="text" name="title" id="title" value="<?php echo $check('title');?>">
+	</p>
+	<p>
+		<label for="content">Contenu</label>
+        <textarea rows="4" cols="50" name="content" id="content"><?php echo $check('content');?></textarea>
+	</p>
+	<label for="published">Publié</label>
+	<select name="published" form="edit-article">
+	  <option value="0" <?php if($check('published') == 0) echo "selected"; ?>>Non</option>
+	  <option value="1" <?php if($check('published') == 1) echo "selected"; ?>>Oui</option>
+	</select>
 	<input type="submit" value="Editer" name="edit"/>
 </form>	
 <?php endif;?>

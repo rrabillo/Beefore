@@ -24,16 +24,18 @@ class data{
 				$req->execute();
 			break;
 			case 'articles':
-				$req = $this->db->prepare("INSERT INTO articles (title, content, date_post, published, id_pole, id_user) VALUES (:title, :content, :date_post, :published, :id_pole, :id_user)");
+				$req = $this->db->prepare("INSERT INTO articles (title, content, date_post, published, filename, id_pole, id_user) VALUES (:title, :content, :date_post, :published, :filename, :id_pole, :id_user)");
 				$title = $data['title'];
 				$content = $data['content'];
 				$published = $data['published'];
+				$filename = $data['filename'];
 				$id_pole = intval($data['id_pole']);
 				$id_user = intval($data['id_user']);
 				$date = date('Y-m-d H:i:s');  
 				$req->bindParam(':title', $title);
 				$req->bindParam(':content', $content);
 				$req->bindParam(':published', $published);
+				$req->bindParam(':filename', $filename);
 				$req->bindParam(':id_pole', $id_pole);
 				$req->bindParam(':id_user', $id_user);
 				$req->bindParam(':date_post', $date);
@@ -79,12 +81,31 @@ class data{
 					return $result;
 				}
 				else{
-					$req = $this->db->prepare("SELECT * FROM articles INNER JOIN poles ON articles.id_pole = poles.id WHERE poles.name = '$id' AND articles.published = 1 ORDER BY DATE_POST DESC");
+					$req = $this->db->prepare("SELECT * FROM articles WHERE id = $id LIMIT 1");
 					$req->execute();
-					$result = $req->fetchAll();
+					$result = $req->fetch();
 					return $result;
 				}
 			break;
+		}
+	}
+
+	/* Okay, c'est moche, mais pas le choix, j'aurais du prévoir avant en passant un array au lieu d'une simple variable pour les paramêtres, mais là c'est trop tard */
+	function getDataArticles($ReqType, $id = false){
+		switch ($ReqType) {
+			case 'name':
+				$req = $this->db->prepare("SELECT * FROM articles INNER JOIN poles ON articles.id_pole = poles.id WHERE poles.name = '$id' AND articles.published = 1 ORDER BY DATE_POST DESC");
+				$req->execute();
+				$result = $req->fetchAll();
+				return $result;
+			break;
+			case 'author':
+				$req = $this->db->prepare("SELECT * FROM articles INNER JOIN users ON articles.id_user = users.id WHERE articles.id = '$id' AND articles.published = 1 ORDER BY DATE_POST DESC");
+				$req->execute();
+				$result = $req->fetch();
+				return $result;
+			break;
+
 		}
 	}
 	function removeData($type, $id){
@@ -95,6 +116,10 @@ class data{
 			break;
 			case 'poles':
 				$req = $this->db->prepare("DELETE FROM poles WHERE id = $id");
+				$req->execute();
+			break;
+			case 'articles':
+				$req = $this->db->prepare("DELETE FROM articles WHERE id = $id");
 				$req->execute();
 			break;
 
@@ -130,11 +155,29 @@ class data{
 				$id = $data['id'];
 				$name = $data['name'];
 				$req->execute();
-				break;
+			break;
+			case 'articles':
+				$req = $this->db->prepare("UPDATE articles SET title = :title, content = :content, published = :published WHERE id = :id");
+				$req->bindParam(':id', $id);
+				$req->bindParam(':title', $title);
+				$req->bindParam(':content', $content);
+				$req->bindParam(':published', $published);
+				$id = $data['id'];
+				$title = $data['title'];
+				$content = $data['content'];
+				$published = $data['published'];
+				$req->execute();
+			break;
 		}
 	}
 }
 
-$db = new data();
-$db->db = $dbh;
-$GLOBALS['db'] = $db;
+if(isset($dbh)){
+	$db = new data();
+	$db->db = $dbh;
+	$GLOBALS['db'] = $db;
+}
+else{
+	$dirname = 'install/index.php';
+	header("Location:".$dirname);
+}

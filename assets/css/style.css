@@ -689,6 +689,7 @@ embed {
 .img-actu{
     float:left;
     margin-right: 4%;
+    max-width: 200px;
 }
 
 .actu-bonplan{

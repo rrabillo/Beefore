@@ -11,9 +11,13 @@ function bf_page(){
 function bf_article(){
 	require(THEME_PATH. 'article.php');
 }
-/* Get article template */
+/* Get article list */
 function bf_addArticle(){
 	require(THEME_PATH. 'add-article.php');
+}
+/* Get article template */
+function bf_displayArticle(){
+	require(THEME_PATH. 'article.php');
 }
 /* Get Login Form */
 function bf_loginForm(){
@@ -34,6 +38,9 @@ function bf_usersAdmin(){
 		case 'poles':
 			require(THEME_PATH. 'poles.php');
 			break;
+		case 'articles':
+			require(THEME_PATH. 'articles.php');
+			break;
 	}
 }
 function bf_setMessage($type, $msg){
@@ -49,10 +56,3 @@ function bf_setMessage($type, $msg){
 			break;
 	}
 }
-// /* Display Articles */
-// function bee_displayArticles(){
-// 	global $mysql;
-// 	foreach($mysql->query('SELECT * from bee_articles') as $row) {
-//        	print_r($row);
-//    	}
-// }

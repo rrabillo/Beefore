@@ -47,6 +47,8 @@
 <?php bf_header(); ?>
 <?php if($GLOBALS['current_url'] == 'add-article'):?>
     <?php bf_addArticle(); ?>
+<?php elseif (isset($_GET['article'])): ?>
+    <?php bf_displayArticle(); ?>
 <?php else:?>
     <?php bf_page(); ?>
 <?php endif; ?>

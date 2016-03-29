@@ -12,7 +12,7 @@ if(isset($_POST['title'])){
     </div>
     <div role="left">
         <?php if($_SESSION['user']->isLogged()):?>
-            <form action="./add-article" method="post">
+            <form action="./add-article" method="post" enctype="multipart/form-data">
                 <p>
                     <label for="title">Titre</label>
                     <input type="text" name="title" id="title">
@@ -21,6 +21,7 @@ if(isset($_POST['title'])){
                     <label for="content">Contenu</label>
                     <textarea rows="4" cols="50" name="content" id="content"></textarea>
                 </p>
+                <input type="file" name="img" size="30">
                 <input type="submit" value="Submit">
             </form>
         <?php endif; ?>

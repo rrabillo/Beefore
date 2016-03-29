@@ -14,6 +14,9 @@ if(isset($_POST['logout'])){
 		<?php if($GLOBALS['current_url'] == "poles"):?>
 			<?php bf_usersAdmin(); ?>
 		<?php endif;?>
+		<?php if($GLOBALS['current_url'] == "articles"):?>
+			<?php bf_usersAdmin(); ?>
+		<?php endif;?>
 		<?php if($GLOBALS['current_url'] == "edit"):?>
 			<?php bf_usersAdmin(); ?>
 		<?php endif;?>

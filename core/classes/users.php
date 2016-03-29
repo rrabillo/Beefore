@@ -54,6 +54,9 @@ class user{
 		$results = $db->getData('users');
 		foreach ($results as $key => $value) {
 			$pole = $db->getData('poles', $value['id_pole']);
+			if(!isset($pole['name'])){
+				$pole['name'] = "Non défini";
+			}
 			echo "<div class='userlist'>
 					<span>Name: ".$value['nickname']."</span>
 					<span>email: ".$value['email']."</span>

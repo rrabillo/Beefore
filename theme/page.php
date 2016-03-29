@@ -25,10 +25,10 @@ if($_SESSION['pole']->id == $_SESSION['user']->pole || $_SESSION['user']->rank =
                 <?php foreach ($articles as $key => $value): ?>
                     <div class="disp-tr dcom">
                         <div class="disp-tc">
-                            <img src="assets/img/minion.jpg" alt="minions" class="img-actu">
+                            <img src="uploads/<?php echo $value['filename']; ?>" alt="" class="img-actu">
                             <h2><?php echo $value['title'] ?></h2>
-                            <p><?php echo $value['content'] ?></p>
-                            <a href="#" class="btn btn-small">Afficher la suite</a>
+                            <p><i><?php echo $_SESSION['article']->getExcerpt($value['content']); ?>...</i></p>
+                            <a href="<?php echo $GLOBALS['current_url']; ?>?article=<?php echo $value['0'] ?>" class="btn btn-small">Afficher la suite</a>
                         </div>
                     </div>
                 
