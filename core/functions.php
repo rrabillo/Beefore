@@ -11,6 +11,10 @@ function bf_page(){
 function bf_article(){
 	require(THEME_PATH. 'article.php');
 }
+/* Get article template */
+function bf_addArticle(){
+	require(THEME_PATH. 'add-article.php');
+}
 /* Get Login Form */
 function bf_loginForm(){
 	require(THEME_PATH. 'login-form.php');

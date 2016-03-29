@@ -19,6 +19,7 @@ class user{
 		if(password_verify($password, $results['password'])){
 			$_SESSION['user']->nickname = $nickname;
 			$_SESSION['user']->rank = $results['rank'];
+			$_SESSION['user']->id = $results['id'];
 			$_SESSION['user']->pole = $results['id_pole'];
 		}
 		elseif(!$results){

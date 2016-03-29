@@ -1,45 +1,30 @@
 <?php 
-$articles = $_SESSION['article']->listArticlebyPoleName($GLOBALS['current_url']);
-$polelist = $_SESSION['pole']->listBrut();
-$_SESSION['pole']->id = false;
-$canSee = false;
-foreach ($polelist as $key => $value) {
-    if($value['name'] == $GLOBALS['current_url']){
-       $_SESSION['pole']->id = $value['id'];
-    }
-}
-if($_SESSION['pole']->id == $_SESSION['user']->pole || $_SESSION['user']->rank == 3){
-    $canSee = true;
+if(isset($_POST['title'])){
+    $_SESSION['article']->add();
 }
 ?>
 <section role="main">
 
     <div class="page-title">
         <div id="banner">
-            <h1><?php echo $GLOBALS['current_url'];?></h1>
+            <h1>Proposez un article </h1>
         </div>
     </div>
     <div role="left">
         <?php if($_SESSION['user']->isLogged()):?>
-            <?php if($canSee): ?>
-                <?php foreach ($articles as $key => $value): ?>
-                    <div class="disp-tr dcom">
-                        <div class="disp-tc">
-                            <img src="assets/img/minion.jpg" alt="minions" class="img-actu">
-                            <h2><?php echo $value['title'] ?></h2>
-                            <p><?php echo $value['content'] ?></p>
-                            <a href="#" class="btn btn-small">Afficher la suite</a>
-                        </div>
-                    </div>
-                
-                <?php endforeach; ?>
-            <?php else:?>
-                <h2>Vous n'êtes pas autorisé à afficher le contenu</h2>
-            <?php endif; ?>
-        <?php else:?>
-        <h2> Veuillez vous connecter pour afficher les articles</h2>
-        <?php endif ?>
-        </div>
+            <form action="./add-article" method="post">
+                <p>
+                    <label for="title">Titre</label>
+                    <input type="text" name="title" id="title">
+                </p>
+                <p>
+                    <label for="content">Contenu</label>
+                    <textarea rows="4" cols="50" name="content" id="content"></textarea>
+                </p>
+                <input type="submit" value="Submit">
+            </form>
+        <?php endif; ?>
+    </div>
     <div role="right">
         <div class="disp-t">
             <div class="disp-tr">

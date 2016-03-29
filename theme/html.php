@@ -40,10 +40,16 @@
                 });
             })
         </script>
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+        <script>tinymce.init({ selector:'textarea' });</script>
     </head>
 <body role="document">
 <?php bf_header(); ?>
-<?php bf_page(); ?>
+<?php if($GLOBALS['current_url'] == 'add-article'):?>
+    <?php bf_addArticle(); ?>
+<?php else:?>
+    <?php bf_page(); ?>
+<?php endif; ?>
 <?php bf_footer(); ?>
 </body>
 </html>

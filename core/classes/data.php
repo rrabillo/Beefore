@@ -23,6 +23,22 @@ class data{
 				$name = $data['name'];
 				$req->execute();
 			break;
+			case 'articles':
+				$req = $this->db->prepare("INSERT INTO articles (title, content, date_post, published, id_pole, id_user) VALUES (:title, :content, :date_post, :published, :id_pole, :id_user)");
+				$title = $data['title'];
+				$content = $data['content'];
+				$published = $data['published'];
+				$id_pole = intval($data['id_pole']);
+				$id_user = intval($data['id_user']);
+				$date = date('Y-m-d H:i:s');  
+				$req->bindParam(':title', $title);
+				$req->bindParam(':content', $content);
+				$req->bindParam(':published', $published);
+				$req->bindParam(':id_pole', $id_pole);
+				$req->bindParam(':id_user', $id_user);
+				$req->bindParam(':date_post', $date);
+				$req->execute();
+			break;
 		}
 	}
 	function getData($type, $id = false){
@@ -63,7 +79,7 @@ class data{
 					return $result;
 				}
 				else{
-					$req = $this->db->prepare("SELECT * FROM articles INNER JOIN poles ON articles.id_pole = poles.id WHERE poles.name = '$id' ORDER BY DATE DESC");
+					$req = $this->db->prepare("SELECT * FROM articles INNER JOIN poles ON articles.id_pole = poles.id WHERE poles.name = '$id' AND articles.published = 1 ORDER BY DATE_POST DESC");
 					$req->execute();
 					$result = $req->fetchAll();
 					return $result;
