@@ -16,6 +16,8 @@ L'adresse du back-office est /core/admin.
 
 Il suffit ensuite d'ajouter un pôle et d'assigner l'administrateur à ce pôle. On peut également ajouter/supprimer un utilisateur.
 
+/!\ Important : Après avoir assigné un pôle à l'administrateur, veuillez vous déconnecter et vous reconnecter.
+
 Sur le front, on peut ajouter un article, celui-ci est ensuite mis en attente de validation. Pour valider un article, il suffit de se rendre dans
 le back-office et de le valider.
 
