@@ -819,5 +819,58 @@ embed {
 }
 
 
-/*CALENDRIER*/
-
+/* INSTALLATION */
+.install h1{
+    color: #f29500;
+    text-align: center;
+}
+.install > p{
+    text-align: center;
+}
+form#install_bdd, form#create_admin{
+    margin: 40px auto 10px;
+    width: 300px;
+    max-width: 100%;
+    text-align: center;
+}
+form#install_bdd p, form#create_admin p{
+    text-align: left;
+}
+form#install_bdd label, form#create_admin label{
+    display: inline-block;
+    margin-bottom: 7px;
+    width: 100%;
+}
+form#install_bdd input[type="text"], form#create_admin input{
+    width: 100%;
+}
+form#install_bdd input[type="submit"], form#create_admin input[type="submit"], .admin_created a{
+    padding: 7px 30px;
+    color: #fff;
+    background-color: #f29500;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0;
+    width: auto;
+}
+.create_admin{
+    text-align: center;
+}
+body.create_admin i, body.create_admin>p{
+    font-size: 1.125em;
+}
+body.create_admin>p{
+    margin-top: 40px;
+}
+body.create_admin, .admin_created {
+    padding-top: 30px;
+}
+.admin_created{
+    text-align: center;
+}
+.admin_created a{
+    text-decoration: none;
+    display: inline-block;
+}
